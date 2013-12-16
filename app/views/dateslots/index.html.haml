@@ -1,0 +1,17 @@
+%h1 Dates
+= link_to new_dateslot_path, :class => "ui button tiny" do
+  %i.add.icon
+  New date
+= link_to :overview, :class => "ui button tiny green" do
+  %i.list.layout.icon
+  Overview
+%table.ui.table.segment
+  %tr
+    %th Activiteit
+    %th Eerstvolgende datum
+    %th Link
+  - @dateslots.each do |dateslot|
+    %tr
+      %td= dateslot.title
+      %td= l(dateslot.converted_schedule.first, format: :full)
+      %td= link_to "Bekijk", dateslot

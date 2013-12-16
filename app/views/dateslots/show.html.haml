@@ -1,0 +1,14 @@
+.ui.breadcrumb
+  = link_to "Dates", :dateslots
+  %i.right.arrow.icon.divider
+  .active.section= @dateslot.title
+
+%h1= @dateslot.title
+%ul
+  - @dateslot.converted_schedule.first(10).each do |e|
+    %li
+      = l(e.to_date, format: :full)
+      van
+      = @dateslot.start_time.strftime("%H:%M")
+      tot
+      = @dateslot.end_time.strftime("%H:%M")

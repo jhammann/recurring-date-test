@@ -1,0 +1,15 @@
+.ui.breadcrumb
+  = link_to "Dates", :dateslots
+  %i.right.arrow.icon.divider
+  .active.section Overview
+%h1 Overview
+%table.ui.table.segment
+  %tr
+    %th Activiteit
+    %th Datum
+    %th Link
+  - @dateslots.each do |dateslot|
+    %tr
+      %td= dateslot.title
+      %td= l(dateslot.converted_schedule.first, format: :full)
+      %td= link_to "Bekijk", dateslot

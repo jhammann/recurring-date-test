@@ -1,0 +1,12 @@
+/*
+ *= require recurring_select
+ *= require_self
+ *= require_tree .
+ */
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,300);
+
+a {color: #009FDA; text-decoration: none;}
+a:hover {color: #00BAFF;}
+
+body {font-family:"Open Sans", sans-serif;}

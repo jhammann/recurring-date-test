@@ -1,0 +1,19 @@
+= form_for @dateslot, :html => {:class => "ui form"} do |f|
+  .two.fields
+    .field
+      = f.label :title
+      = f.text_field :title
+      %tr
+  .field
+    = f.label :date, "Datum van activiteit"
+    .startDate= f.date_select :date, start_year: Time.now.year, end_year: Time.now.year + 5, :prompt => {:day => 'Dag', :month => 'Maand', :year => 'Jaar'}, :order => [:day, :month, :year]
+  .field
+    = f.label :schedule, "Herhalen"
+    = f.select_recurring :schedule
+  .field
+    = f.label :start_time, "Tijd van aanvang"
+    .startTime= f.time_select :start_time, minute_step: 5
+  .field
+    = f.label :end_time, "Eindtijd"
+    .startTime= f.time_select :end_time, minute_step: 5
+  = f.submit "Opslaan", :class => "ui blue button tiny"

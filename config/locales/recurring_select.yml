@@ -1,0 +1,8 @@
+nl:
+  recurring_select:
+    not_recurring: "- niet herhalen -"
+    change_schedule: "Verander herhaling..."
+    set_schedule: "Nieuwe herhaling..."
+    new_custom_schedule: "New custom schedule..."
+    custom_schedule: "Custom schedule..."
+    or: of

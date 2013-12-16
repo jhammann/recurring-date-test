@@ -1,0 +1,22 @@
+$.fn.recurring_select.texts = {
+  repeat: "Herhaal",
+  frequency: "Frequentie",
+  daily: "Dagelijks",
+  weekly: "Wekelijks",
+  monthly: "Maandelijks",
+  yearly: "Jaarlijks",
+  every: "Elke",
+  days: "dag(en)",
+  weeks_on: "week/weken op",
+  months: "maand(en)",
+  years: "jaar/jaren",
+  first_day_of_week: 1,
+  day_of_month: "Dag van de maand",
+  day_of_week: "Dag van de week",
+  cancel: "Annuleer",
+  last_day: "Laatste dag",
+  ok: "OK",
+  summary: "Herhaling",
+  days_first_letter: ["Z", "M", "D", "W", "D", "V", "Z" ],
+  order: ["1e", "2e", "3e", "4e"]
+}
