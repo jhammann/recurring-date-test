@@ -9,9 +9,19 @@
   %tr
     %th Activiteit
     %th Eerstvolgende datum
+    %th Van
+    %th Tot
     %th Link
   - @dateslots.each do |dateslot|
     %tr
       %td= dateslot.title
-      %td= l(dateslot.converted_schedule.first, format: :full)
-      %td= link_to "Bekijk", dateslot
+      %td= first_event(dateslot, dateslot.schedule)
+      %td= dateslot.start_time.strftime("%H:%M")
+      %td= dateslot.end_time.strftime("%H:%M")
+      %td
+        = link_to dateslot, :class => "mini ui button" do
+          %i.info.icon
+          Bekijk
+        = link_to [:edit, dateslot], :class => "mini ui button" do
+          %i.edit.icon
+          Wijzig

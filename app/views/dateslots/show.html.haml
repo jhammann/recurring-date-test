@@ -4,11 +4,25 @@
   .active.section= @dateslot.title
 
 %h1= @dateslot.title
-%ul
-  - @dateslot.converted_schedule.first(10).each do |e|
-    %li
-      = l(e.to_date, format: :full)
-      van
-      = @dateslot.start_time.strftime("%H:%M")
-      tot
-      = @dateslot.end_time.strftime("%H:%M")
+%table.ui.collapsing.table.segment
+  %thead
+    %tr
+      %th Datum
+      %th Van
+      %th Tot
+  %tbody
+    - if valid_schedule?(@dateslot.schedule)
+      - @dateslot.converted_schedule.first(10).each do |e|
+        %tr
+          %td= l(e.to_date, format: :full)
+          %td= @dateslot.start_time.strftime("%H:%M")
+          %td= @dateslot.end_time.strftime("%H:%M")
+    - else
+      %tr
+        %td= l(@dateslot.date, format: :full)
+        %td= @dateslot.start_time.strftime("%H:%M")
+        %td= @dateslot.end_time.strftime("%H:%M")
+= link_to :dateslots, :class => "ui animated tiny button" do
+  .visible.content Terug naar overzicht
+  .hidden.content
+    %i.left.arrow.icon
