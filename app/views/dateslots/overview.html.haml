@@ -9,18 +9,35 @@
     %th Datum
     %th Van
     %th Tot
-    %th Link
-  - @dateslots.each do |dateslot|
+  - @events.each do |event|
     %tr
-      %td= dateslot.title
-      %td= first_event(dateslot, dateslot.schedule)
-      %td= dateslot.start_time.strftime("%H:%M")
-      %td= dateslot.end_time.strftime("%H:%M")
       %td
-        = link_to dateslot, :class => "mini ui button" do
-          %i.info.icon
-          Bekijk
-= link_to :dateslots, :class => "ui animated tiny button" do
-  .visible.content Terug naar overzicht
-  .hidden.content
-    %i.left.arrow.icon
+      %td= l(event.to_date, format: :full)
+      %td
+      %td
+
+= will_paginate @events
+
+/   - @dateslots.each do |dateslot|
+/     %tr
+/       %td= dateslot.title
+/       %td= valid_schedule(dateslot, dateslot.schedule)
+/       %td= dateslot.start_time.strftime("%H:%M")
+/       %td= dateslot.end_time.strftime("%H:%M")
+/       %td
+/         = link_to dateslot, :class => "mini ui button" do
+/           %i.info.icon
+/           Bekijk
+/ = link_to :dateslots, :class => "ui animated tiny button" do
+/   .visible.content Terug naar overzicht
+/   .hidden.content
+/     %i.left.arrow.icon
+
+/ - @events.each do |event|
+/   - event.each do |e|
+/     = l(e.to_date, format: :full)
+/     %br
+
+
+%h2 === ARRAY ===
+= @events

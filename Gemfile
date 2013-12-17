@@ -10,6 +10,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'less-rails'
 gem 'autoprefixer-rails'
 gem 'semantic-ui-rails'
+gem 'will_paginate'
 
 # Gems used only for assets and not required
 # in production environments by default.

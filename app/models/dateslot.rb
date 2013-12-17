@@ -21,4 +21,14 @@ class Dateslot < ActiveRecord::Base
       self.date
     end
   end
+
+  def rule
+    if RecurringSelect.is_valid_rule?(self.schedule)
+      rule = RecurringSelect.dirty_hash_to_rule(schedule)
+      rule.to_s
+    else
+      return "Eenmalig"
+    end
+  end
+
 end

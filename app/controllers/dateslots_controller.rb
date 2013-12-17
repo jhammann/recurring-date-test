@@ -1,4 +1,5 @@
 class DateslotsController < ApplicationController
+  require 'will_paginate/array'
 
   def index
     @dateslots = Dateslot.all
@@ -22,8 +23,24 @@ class DateslotsController < ApplicationController
     end
   end
 
+  def edit
+    @dateslot = Dateslot.find(params[:id])
+  end
+
+  def update
+    @dateslot = Dateslot.find(params[:id])
+    if @dateslot.update_attributes(params[:dateslot])
+      flash[:notice] = 'Dateslot was successfully updated.'
+      redirect_to(dateslots_path)
+    else
+      render :action => "edit"
+    end
+  end
+
   def overview
     @dateslots = Dateslot.all
+    @events = @dateslots.map{|d|[d.converted_schedule.first(10)]}.flatten.sort
+    @events = @events.paginate(page: params[:page], per_page: 40)
   end
 
 end
