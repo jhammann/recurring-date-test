@@ -214,3 +214,7 @@ nl:
         image_file_size: "Afbeelding"
     errors:
       <<: *errors
+  will_paginate:
+    previous_label: "&laquo;"
+    next_label: "&raquo;"
+    page_gap: "..."
