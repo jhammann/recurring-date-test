@@ -2,7 +2,7 @@ class DateslotsController < ApplicationController
   require 'will_paginate/array'
 
   def index
-    @dateslots = Dateslot.all
+    @dateslots = Dateslot.all.sort_by{|d| d.first_event}
   end
 
   def show
@@ -39,7 +39,7 @@ class DateslotsController < ApplicationController
 
   def overview
     @dateslots = Dateslot.all
-    @events = @dateslots.map{|d|[d.converted_schedule.first(10)]}.flatten.sort
+    @events = @dateslots.map{|d| [d.converted_schedule.next_occurrences(10)]}.flatten.sort
     @events = @events.paginate(page: params[:page], per_page: 40)
   end
 

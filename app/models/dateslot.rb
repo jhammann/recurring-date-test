@@ -37,4 +37,8 @@ class Dateslot < ActiveRecord::Base
     end
   end
 
+  def first_event
+    converted_schedule.first
+  end
+
 end

@@ -15,7 +15,7 @@
   - @dateslots.each do |dateslot|
     %tr
       %td= dateslot.title
-      %td= first_event(dateslot, dateslot.schedule)
+      %td= l(dateslot.first_event, format: :full)
       %td= dateslot.start_time.strftime("%H:%M")
       %td= dateslot.end_time.strftime("%H:%M")
       %td
