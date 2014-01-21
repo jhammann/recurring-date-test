@@ -14,7 +14,7 @@ class Dateslot < ActiveRecord::Base
 
   def converted_schedule
     if RecurringSelect.is_valid_rule?(self.schedule)
-      the_schedule = Schedule.new(self.date)
+      the_schedule = Schedule.new(Time.now)
       the_schedule.add_recurrence_rule(RecurringSelect.dirty_hash_to_rule(self.schedule))
       the_schedule
     else
