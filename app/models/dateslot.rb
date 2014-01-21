@@ -1,5 +1,6 @@
 class Dateslot < ActiveRecord::Base
   include IceCube
+  require 'date'
   attr_accessible :title, :start_time, :end_time, :schedule, :date
 
   serialize :schedule, Hash
@@ -14,11 +15,16 @@ class Dateslot < ActiveRecord::Base
 
   def converted_schedule
     if RecurringSelect.is_valid_rule?(self.schedule)
-      the_schedule = Schedule.new(Time.now)
+      if date > Date.today
+        the_schedule = Schedule.new(date)
+      else
+        the_schedule = Schedule.new(Date.today)
+      end
       the_schedule.add_recurrence_rule(RecurringSelect.dirty_hash_to_rule(self.schedule))
       the_schedule
     else
-      self.date
+      the_schedule = IceCube::Schedule.new(date, :end_time => date)
+      the_schedule
     end
   end
 
