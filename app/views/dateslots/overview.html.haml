@@ -9,10 +9,11 @@
     %th Datum
     %th Van
     %th Tot
-  - @events.each do |event|
-    %tr
-      %td
-      %td= l(event.to_date, format: :full)
-      %td
-      %td
+  - @events.each do |date, events|
+    - events.each do |event|
+      %tr
+        %td= link_to event.title, event
+        %td= l(date.to_date, format: :full)
+        %td= event.start_time.strftime("%H:%M")
+        %td= event.end_time.strftime("%H:%M")
 = will_paginate @events

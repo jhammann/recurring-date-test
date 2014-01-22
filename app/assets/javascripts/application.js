@@ -10,8 +10,6 @@ $(function(){
 
   $('ul.events').each(function() {
     var $eventsList = $(this);
-    //if (eventsList.children("li").size() <= 3) return;
-    //var hiddenElements = eventsList.children('li:gt(2)', this).hide();
     var count=0;
     $eventsList.find("li").each(function(){
       if(++count == 3){
