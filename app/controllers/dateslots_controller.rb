@@ -3,7 +3,7 @@ class DateslotsController < ApplicationController
 
   def index
     @dateslots = Dateslot.all.sort_by{|d| d.first_event}
-    @dateslots = @dateslots.first(2)
+    #@dateslots = @dateslots.first(2)
   end
 
   def show
