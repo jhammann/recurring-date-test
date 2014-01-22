@@ -10,3 +10,8 @@ a {color: #009FDA; text-decoration: none;}
 a:hover {color: #00BAFF;}
 
 body {font-family:"Open Sans", sans-serif;}
+
+.bold {font-weight:bold;}
+.italic {font-style:italic;}
+
+h2 a {color:black;}

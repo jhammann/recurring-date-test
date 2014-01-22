@@ -3,6 +3,7 @@ class DateslotsController < ApplicationController
 
   def index
     @dateslots = Dateslot.all.sort_by{|d| d.first_event}
+    @dateslots = @dateslots.first(2)
   end
 
   def show
@@ -41,6 +42,17 @@ class DateslotsController < ApplicationController
     @dateslots = Dateslot.all
     @events = @dateslots.map{|d| [d.converted_schedule.first(10)]}.flatten.sort
     @events = @events.paginate(page: params[:page], per_page: 40)
+  end
+
+  def events
+    @dateslots = Dateslot.all.sort_by{|d| d.first_event}
+  end
+
+  def destroy
+    @dateslot = Dateslot.find(params[:id])
+    @dateslot.destroy
+    flash[:notice] = "Dateslot verwijderd"
+    redirect_to(dateslots_path)
   end
 
 end

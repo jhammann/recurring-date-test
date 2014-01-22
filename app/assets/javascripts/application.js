@@ -1,15 +1,3 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// the compiled file.
-//
-// WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
-// GO AFTER THE REQUIRES BELOW.
-//
 //= require jquery
 //= require jquery_ujs
 //= require recurring_select
@@ -18,6 +6,26 @@
 
 $(function(){
 
-  $('.ui.selection.dropdown').dropdown();
+  $(".ui.selection.dropdown").dropdown();
+
+  $('ul.events').each(function() {
+    var $eventsList = $(this);
+    //if (eventsList.children("li").size() <= 3) return;
+    //var hiddenElements = eventsList.children('li:gt(2)', this).hide();
+    var count=0;
+    $eventsList.find("li").each(function(){
+      if(++count == 3){
+        $(this).parent().append("<li class='showLink'><a href='javascript:void(0);'>Bekijk meer datums...</a></li>");
+      }
+      else if(count > 3){
+        $(this).css("display","none");
+        $(this).addClass("hiddenDate");
+      }
+    });
+    $eventsList.find(".showLink").click(function(){
+      $eventsList.find(".hiddenDate").toggle();
+      $eventsList.find(".showLink a").text($eventsList.find(".showLink a").text()=="Bekijk meer datums..."?"Bekijk minder datums...":"Bekijk meer datums...");
+    });
+  });
 
 })

@@ -1,0 +1,15 @@
+.ui.breadcrumb
+  = link_to "Dates", :dateslots
+  %i.right.arrow.icon.divider
+  .active.section Overview by event
+%h1 Overview by event
+- @dateslots.each do |dateslot|
+  %h2= link_to dateslot.title, dateslot
+  %p.italic
+    Van
+    = dateslot.start_time.strftime("%H:%M")
+    tot
+    = dateslot.end_time.strftime("%H:%M")
+  %ul.events
+    - dateslot.converted_schedule.first(10).each do |event|
+      %li= l(event.to_date, format: :full)

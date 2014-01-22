@@ -4,6 +4,12 @@
   .active.section= @dateslot.title
 
 %h1= @dateslot.title
+= link_to [:edit, @dateslot], :class => "ui button mini" do
+  %i.edit.icon
+  Wijzig
+= link_to @dateslot, :method => :delete, :confirm => "Weet je zeker dat je deze activiteit wil verwijderen?", :class => "ui button mini red" do
+  %i.remove.sign.icon
+  Verwijder
 %table.ui.collapsing.table.segment
   %thead
     %tr
