@@ -39,20 +39,41 @@ class DateslotsController < ApplicationController
   end
 
   def overview
-    @events = Dateslot.all.each.inject({}) do |memo, dateslot|
+    @dateslots = Dateslot.all.each.inject({}) do |memo, dateslot|
       dates = dateslot.converted_schedule.first(10)
 
       dates.each do |date|
         if memo.has_key?(date)
           memo[date] << dateslot
         else
-          memo[date] = [dateslot]
+          if date > Time.now
+            memo[date] = [dateslot]
+          end
         end
       end
 
       memo
     end.sort_by{ |date| date }
-    @events = @events.paginate(page: params[:page], per_page: 30)
+    @dateslots = @dateslots.paginate(page: params[:page], per_page: 30)
+  end
+
+  def months
+    @dateslots = Dateslot.all.each.inject({}) do |memo, dateslot|
+      dates = dateslot.converted_schedule.first(10)
+
+      dates.each do |date|
+        if memo.has_key?(date)
+          memo[date] << dateslot
+        else
+          if date > Time.now
+            memo[date] = [dateslot]
+          end
+        end
+      end
+
+      memo
+    end.sort_by{ |date| date }
+    @dateslots = @dateslots.paginate(page: params[:page], per_page: 30)
   end
 
   def events

@@ -1,4 +1,9 @@
 module ApplicationHelper
+  require 'date'
+
+  def parse_date(date)
+    d = Date.parse(date)
+  end
 
   def first_event(dateslot, schedule)
     if RecurringSelect.is_valid_rule?(schedule)
